@@ -1,0 +1,34 @@
+[2024-11-05T13:42:08.976+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-05T13:42:09.023+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: airbnb_data_pipeline.check_and_download_data manual__2024-11-05T13:42:04.940372+00:00 [queued]>
+[2024-11-05T13:42:09.077+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: airbnb_data_pipeline.check_and_download_data manual__2024-11-05T13:42:04.940372+00:00 [queued]>
+[2024-11-05T13:42:09.079+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 1
+[2024-11-05T13:42:09.130+0000] {taskinstance.py:2888} INFO - Executing <Task(BranchPythonOperator): check_and_download_data> on 2024-11-05 13:42:04.940372+00:00
+[2024-11-05T13:42:09.146+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=449) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-05T13:42:09.149+0000] {standard_task_runner.py:72} INFO - Started process 451 to run task
+[2024-11-05T13:42:09.149+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'airbnb_data_pipeline', 'check_and_download_data', 'manual__2024-11-05T13:42:04.940372+00:00', '--job-id', '23', '--raw', '--subdir', 'DAGS_FOLDER/airbnb_dag.py', '--cfg-path', '/tmp/tmp63ed_uvc']
+[2024-11-05T13:42:09.151+0000] {standard_task_runner.py:105} INFO - Job 23: Subtask check_and_download_data
+[2024-11-05T13:42:09.266+0000] {task_command.py:467} INFO - Running <TaskInstance: airbnb_data_pipeline.check_and_download_data manual__2024-11-05T13:42:04.940372+00:00 [running]> on host 552c70a48aab
+[2024-11-05T13:42:09.501+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='airbnb_data_pipeline' AIRFLOW_CTX_TASK_ID='check_and_download_data' AIRFLOW_CTX_EXECUTION_DATE='2024-11-05T13:42:04.940372+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-05T13:42:04.940372+00:00'
+[2024-11-05T13:42:09.504+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-05T13:42:09.505+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-05T13:42:09.506+0000] {logging_mixin.py:190} INFO - Current task name:check_and_download_data state:running start_date:2024-11-05 13:42:09.026373+00:00
+[2024-11-05T13:42:09.506+0000] {logging_mixin.py:190} INFO - Dag name:airbnb_data_pipeline and current dag run status:running
+[2024-11-05T13:42:09.507+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-05T13:42:09.508+0000] {baseoperator.py:405} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2024-11-05T13:42:09.509+0000] {logging_mixin.py:190} INFO - https://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2024-09-05/data/listings.csv.gz
+[2024-11-05T13:42:09.946+0000] {logging_mixin.py:190} INFO - 200
+[2024-11-05T13:42:13.413+0000] {logging_mixin.py:190} INFO - Data saved to /opt/***/data/input/amsterdam_2024-09-05_listings.csv
+[2024-11-05T13:42:13.429+0000] {python.py:240} INFO - Done. Returned value was: clean_data
+[2024-11-05T13:42:13.432+0000] {branch.py:38} INFO - Branch into clean_data
+[2024-11-05T13:42:13.433+0000] {skipmixin.py:230} INFO - Following branch ('clean_data',)
+[2024-11-05T13:42:13.497+0000] {skipmixin.py:278} INFO - Skipping tasks [('data_not_updated', -1)]
+[2024-11-05T13:42:13.663+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-05T13:42:13.666+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=airbnb_data_pipeline, task_id=check_and_download_data, run_id=manual__2024-11-05T13:42:04.940372+00:00, execution_date=20241105T134204, start_date=20241105T134209, end_date=20241105T134213
+[2024-11-05T13:42:13.683+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-11-05T13:42:13.684+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-11-05T13:42:13.685+0000] {logging_mixin.py:190} INFO - Dag name:airbnb_data_pipeline queued_at:2024-11-05 13:42:05.001614+00:00
+[2024-11-05T13:42:13.686+0000] {logging_mixin.py:190} INFO - Task hostname:552c70a48aab operator:BranchPythonOperator
+[2024-11-05T13:42:13.756+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-05T13:42:13.792+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

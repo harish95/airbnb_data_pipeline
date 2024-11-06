@@ -1,0 +1,150 @@
+[2024-11-05T13:25:40.755+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-05T13:25:40.772+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: airbnb_data_pipeline.check_and_download_data manual__2024-11-05T13:25:38.515255+00:00 [queued]>
+[2024-11-05T13:25:40.781+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: airbnb_data_pipeline.check_and_download_data manual__2024-11-05T13:25:38.515255+00:00 [queued]>
+[2024-11-05T13:25:40.781+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 1
+[2024-11-05T13:25:40.795+0000] {taskinstance.py:2888} INFO - Executing <Task(BranchPythonOperator): check_and_download_data> on 2024-11-05 13:25:38.515255+00:00
+[2024-11-05T13:25:40.802+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=236) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-05T13:25:40.803+0000] {standard_task_runner.py:72} INFO - Started process 238 to run task
+[2024-11-05T13:25:40.804+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'airbnb_data_pipeline', 'check_and_download_data', 'manual__2024-11-05T13:25:38.515255+00:00', '--job-id', '19', '--raw', '--subdir', 'DAGS_FOLDER/airbnb_dag.py', '--cfg-path', '/tmp/tmph__ec_x5']
+[2024-11-05T13:25:40.806+0000] {standard_task_runner.py:105} INFO - Job 19: Subtask check_and_download_data
+[2024-11-05T13:25:40.858+0000] {task_command.py:467} INFO - Running <TaskInstance: airbnb_data_pipeline.check_and_download_data manual__2024-11-05T13:25:38.515255+00:00 [running]> on host 552c70a48aab
+[2024-11-05T13:25:40.952+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='airbnb_data_pipeline' AIRFLOW_CTX_TASK_ID='check_and_download_data' AIRFLOW_CTX_EXECUTION_DATE='2024-11-05T13:25:38.515255+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-05T13:25:38.515255+00:00'
+[2024-11-05T13:25:40.954+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-05T13:25:40.954+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-05T13:25:40.955+0000] {logging_mixin.py:190} INFO - Current task name:check_and_download_data state:running start_date:2024-11-05 13:25:40.773349+00:00
+[2024-11-05T13:25:40.955+0000] {logging_mixin.py:190} INFO - Dag name:airbnb_data_pipeline and current dag run status:running
+[2024-11-05T13:25:40.956+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-05T13:25:40.956+0000] {baseoperator.py:405} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2024-11-05T13:25:40.957+0000] {logging_mixin.py:190} INFO - https://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2024-09-05/data/listings.csv.gz
+[2024-11-05T13:25:41.575+0000] {logging_mixin.py:190} INFO - 200
+[2024-11-05T13:25:42.131+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 274, in execute
+    return self.do_branch(context, super().execute(context))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/crawler/airbnb_crawler.py", line 42, in get_listing_data
+    df.to_csv(file_path, index=False)
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/generic.py", line 3902, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/formats/format.py", line 1152, in to_csv
+    csv_formatter.save()
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 247, in save
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/common.py", line 739, in get_handle
+    check_parent_directory(str(handle))
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/common.py", line 604, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'tmp/data/crawled_data'
+[2024-11-05T13:25:42.145+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2024-11-05T13:25:42.145+0000] {logging_mixin.py:190} INFO - Task start:2024-11-05 13:25:40.773349+00:00 end:2024-11-05 13:25:42.144547+00:00 duration:1.371198
+[2024-11-05T13:25:42.146+0000] {logging_mixin.py:190} INFO - Task:<Task(BranchPythonOperator): check_and_download_data> dag:<DAG: airbnb_data_pipeline> dagrun:<DagRun airbnb_data_pipeline @ 2024-11-05 13:25:38.515255+00:00: manual__2024-11-05T13:25:38.515255+00:00, state:running, queued_at: 2024-11-05 13:25:38.544825+00:00. externally triggered: True>
+[2024-11-05T13:25:42.147+0000] {logging_mixin.py:190} INFO - Failure caused by Cannot save file into a non-existent directory: 'tmp/data/crawled_data'
+[2024-11-05T13:25:42.147+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=airbnb_data_pipeline, task_id=check_and_download_data, run_id=manual__2024-11-05T13:25:38.515255+00:00, execution_date=20241105T132538, start_date=20241105T132540, end_date=20241105T132542
+[2024-11-05T13:25:42.162+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-05T13:25:42.162+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 19 for task check_and_download_data (Cannot save file into a non-existent directory: 'tmp/data/crawled_data'; 238)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 274, in execute
+    return self.do_branch(context, super().execute(context))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/crawler/airbnb_crawler.py", line 42, in get_listing_data
+    df.to_csv(file_path, index=False)
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/generic.py", line 3902, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/formats/format.py", line 1152, in to_csv
+    csv_formatter.save()
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 247, in save
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/common.py", line 739, in get_handle
+    check_parent_directory(str(handle))
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/common.py", line 604, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'tmp/data/crawled_data'
+[2024-11-05T13:25:42.182+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-05T13:25:42.215+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-05T13:25:42.219+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
